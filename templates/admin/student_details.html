@@ -1,0 +1,147 @@
+{% extends 'admin/adminbase.html'%}
+
+{% block content %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-modal/2.2.6/js/bootstrap-modalmanager.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+      <section class="mb-4">
+        <div class="card">
+          <div class="card-header text-center py-3">
+            <h5 class="mb-0 text-center">
+              <!-- <strong style="">All Users</strong> -->
+            </h5>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover text-nowrap">
+                <thead>
+                  <tr>
+
+
+                    <!-- <th scope="col">SlNo</th> -->
+                    <th scope="col">Name</th>
+                    <th scope="col">Institute</th>
+                    <th scope="col">department</th>
+                    <th scope="col">location</th>
+                    <!-- <th scope="col">location</th> -->
+
+                  
+       
+                  </tr>
+                </thead>
+                <tbody>
+              
+
+                  <tr>
+                    <!-- <th scope="row">{{forloop.counter}}</th> -->
+                    <td>{{data.student.username}}</td>
+                    <td>{{data.Institute}}</td>
+                    <td>{{data.department}}</td>
+                    <td>{{data.location}}</td>
+
+                  </tr>
+                  
+
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--Section: Sales Performance KPIs-->
+
+
+
+<a href="#stud">
+
+       <!--Section: Sales Performance KPIs-->
+      <section class="mb-4">
+        <div class="card">
+          <div class="card-header text-center py-3">
+            <h5 class="mb-0 text-center">
+              <strong style="">Mark List</strong>
+            </h5>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover text-nowrap">
+                <thead>
+                  <tr>
+
+                    <th scope="col">SlNo</th>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Mark</th>
+                    <th scope="col">Exam Date</th>
+                     <th scope="col">Edit</th>
+             
+       
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for details in mark_details %}
+
+                  <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{details.subjectCode.Subject}}</td>
+                      <td>{{details.mark}}</td>
+                    <td>{{details.examdate}}</td>
+                  <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Edit
+</button></td>
+                    
+                   
+
+                  </tr>
+                  {% endfor %}
+
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section></a>
+
+
+
+      <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Student Mark</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form >
+          <input type="number" name="mark" class="form-control" style="width: 100%" placeholder="Enter the Mark">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
+
+
+</script>
+
+{% endblock %}

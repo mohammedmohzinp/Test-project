@@ -1,0 +1,64 @@
+{% extends 'student/basestd.html' %}
+
+{% block content %}
+
+<div style="background-color: #BC243C;padding: 30px;margin:30px;width: 400px;height: 600px;border-radius: 30px;" >
+<div class="card mb-3 ">
+  <div class="card-body">
+    <h5 class="card-title">
+<form action="{% url 'update_user' %}" method="post"  >
+<table width="100%">
+
+
+		<tr>
+		<th >User Name :</th>
+		<td>
+<input type="text" name="username" value="{{maindata.username}}" class="form-control">
+
+		</td>
+	</tr>
+
+		<tr>
+		<th>Phone Number:</th>
+		<td>
+<input type="number" name="phone" value="{{maindata.phone}}" class="form-control">
+
+		</td>
+	</tr>
+
+			<tr>
+		<th>Age :</th>
+		<td> 
+<input type="date" name="dateofbirth" value="{{maindata.dateofbirth}}" class="form-control">
+
+		</td>
+	</tr>
+	{% csrf_token %}
+
+			<tr>
+		<th>photo :</th>
+
+		<td> 
+<input type="file" name="photo" value="{{second_data.photo}}" class="form-control">
+<a href="{{second_data.profile}}">image</a>
+		</td>
+	</tr>
+<tr>
+	<th colspan="2">
+<input type="submit" name="submit" value="Update" class="form-control">
+		
+	</th>
+</tr>
+</table>
+</form>
+
+
+
+   </h5>
+    <p class="card-text"></p>
+    <p class="card-text"><small class="text-muted"></small></p>
+  </div>
+</div>
+
+</div>
+{% endblock %}

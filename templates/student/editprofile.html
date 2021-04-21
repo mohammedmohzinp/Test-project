@@ -1,0 +1,63 @@
+{% extends 'student/basestd.html' %}
+
+{% block content %}
+
+<div style="background-color: #BC243C;padding: 30px;margin:30px;width: 400px;height: 600px;border-radius: 30px;" >
+<div class="card mb-3 ">
+  <img class="card-img-top" src="" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">
+
+<table width="100%">
+
+
+		<tr>
+		<th >User Name :</th>
+		<td>{{maindata.username}}</td>
+	</tr>
+
+		<tr>
+		<th>Phone Number:</th>
+		<td>{{maindata.phone}}</td>
+	</tr>
+
+			<tr>
+		<th>Age :</th>
+		<td> {{maindata.age}}</td>
+	</tr>
+
+
+			<tr>
+		<th >Institute :</th>
+		<td>{{second_data.Institute}}</td>
+	</tr>
+
+		<tr>
+		<th>Department:</th>
+		<td>{{second_data.Department}}</td>
+	</tr>
+
+				<tr>
+		<th>Batch</th>
+		<td> {{second_data.batch}}</td>
+	</tr>
+
+			<tr>
+		<th>location :</th>
+		<td> {{second_data.location}}</td>
+	</tr>
+
+
+</table>
+<a href="{% url 'update_user' %}"><br><br><br>
+<button>Edit Profile</button></a>
+
+
+   </h5>
+    <p class="card-text"></p>
+    <p class="card-text"><small class="text-muted"></small></p>
+  </div>
+</div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<style type="text/css">
+   form .error {
+  color: #ff0000;
+
+}
+</style>
+
+   <title>SignUp</title>
+</head>
+<body style="background-color: #FFFDD0">
+
+<center>
+<div style="width: 410px;height: 700px;background-color: white; opacity:0.8px;border-radius: 30px; padding: 30px;margin: 30px " >
+   <h1 >Register Now</h1>
+
+{% if messages %}
+   <div style="background-color: red;width: 100%;height: 30px;padding: 10px;">
+
+
+  {% for message in messages %}
+     <center><b style="color: white">{{ message }}</b></center>
+  {% endfor %}
+
+</div>
+
+{% endif %}
+
+   <br>
+   <form  action="{% url 'signup' %}" name="registration" method="post" id="basic-form" autocomplete="off">
+    {% csrf_token %}
+    <div class="form-group">
+    <label for="exampleInputEmail1" style="float: left;">User Name</label>
+    <input type="text" class="form-control" id="username"  placeholder="Enter Name" name="username" required="required"></div>
+
+  <div class="form-group">
+    <label for="exampleInputEmail1" style="float: left;">Mobile Number</label>
+    <input type="number" class="form-control" id="phone"  placeholder="Enter Mobile Number" name="phone" required="required" maxlength="10"></div>
+
+
+
+      <div class="form-group">
+    <label for="exampleInputEmail1" style="float: left;">Date of Birth</label>
+    <input type="date" class="form-control" id="dateofbirth"  placeholder="Enter Date of birth" name="dateofbirth" required="required"></div>
+
+        <div class="form-group">
+    <label for="exampleInputEmail1" style="float: left;">Profile</label>
+    <input type="file" class="form-control" id="profile" name="profile" required="required" accept="image/*"></div>
+
+  <div class="form-group">
+    <label for="exampleInputPassword1" style="float: left;">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" required="required">
+  </div>
+<div class="form-group">
+    <label for="exampleInputPassword1" style="float: left;">User Type</label><br>
+<div style="float: left;">
+   <input type="radio" name="role" value="student" checked> Student&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <input type="radio" name="role" value="admin"> Admin
+
+</div>
+</div>
+<br><br>
+<div >
+  <button type="submit" class="btn btn-primary btn-block">Submit</button></div>
+  <!-- <button type="submit">Register</button> -->
+</form><br><br>
+Already have an account?<a href="{% url 'login' %}">Login</a>
+   
+</div>
+</center>
+
+
+
+
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+
+<script type="text/javascript">
+   $(document).ready(function() {
+$("#basic-form").validate({
+     rules: {
+
+      username: "required",
+      phone: "required",
+      dateofbirth:"required",
+      profile:"required",
+      email: {
+        required: true,
+  
+        email: true
+      },
+      password: {
+        required: true,
+        minlength: 8,
+        hasUppercase: true,
+        hasLowercase: true,
+
+
+      }
+    },
+
+        messages: {
+      username: "Please enter your name",
+      phone: "Please enter your Mobile number",
+      dateofbirth:"Please enter your dateofbirth",
+      profile:"Please choose your profile",
+      password: {
+        required: "Please provide a password",
+        minlength: "Your password must be at least 8 characters long",
+        hasLowercase:"Use lowercase",
+        hasUppercase:"Use uppercase",
+      },
+      email: "Please enter a valid email address"
+    },
+   submitHandler: function(form) {
+      form.submit();
+    }
+
+});
+});
+</script>
+
+
+
+
+
+
+</html>
