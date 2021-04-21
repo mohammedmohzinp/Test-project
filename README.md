@@ -2,6 +2,8 @@
 API using here for CRUD.This application controlling two users that is Admin and students.
 if you are running in local host then access api using below llinks
 
+API
+
 1- http://127.0.0.1:8000/api/uploaddepartment  >>POST
 2- http://127.0.0.1:8000/api/viewdepartment    >>GET
 3- http://127.0.0.1:8000/api/deleteDeparment    >>DELETE
