@@ -11,6 +11,11 @@ class Department(models.Model):
 	status		= models.BooleanField()
 	date  		= models.DateTimeField(auto_now=True)
 
+	def __str__(self):
+		return self.Department
+
+
+
 
 class Batch(models.Model):
 	Department 	= models.ForeignKey(Department, on_delete=models.CASCADE)
@@ -18,6 +23,9 @@ class Batch(models.Model):
 	profile		= models.ImageField(upload_to="batch")
 	status		= models.BooleanField()
 	date  		= models.DateTimeField(auto_now=True)
+
+	def __str__(self):
+		return self.batch
 
 
 
@@ -29,19 +37,22 @@ class studentDetails(models.Model):
 	location	= models.CharField(max_length=40)
 	date  		= models.DateTimeField(auto_now=True)
 
+	
 
 
 
 class Subjects(models.Model):
-    subjectCode  = models.CharField(max_length=30)
-    Subject      = models.CharField(max_length=12)
-    status		 = models.BooleanField()
-    date     	 = models.DateTimeField(auto_now=True)
+	subjectCode  = models.CharField(max_length=30)
+	Subject      = models.CharField(max_length=12)
+	status		 = models.BooleanField()
+	date     	 = models.DateTimeField(auto_now=True)
 
+	def __str__(self):
+		return self.Subject
 
 
 class StudentMarks(models.Model):
-	student 	= models.OneToOneField(User, on_delete=models.CASCADE)
+	student 	= models.ForeignKey(User, on_delete=models.CASCADE)
 	subjectCode = models.ForeignKey(Subjects, on_delete=models.CASCADE)
 	mark        = models.IntegerField()
 	examdate    = models.DateTimeField(auto_now=True)
