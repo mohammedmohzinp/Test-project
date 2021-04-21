@@ -58,13 +58,18 @@ def student_details(request):
 
 def editmark(request):
 	if request.method == 'POST':
+		id 	= request.POST.get("markid")
+		print(id)
+
 		new_mark = request.POST.get("mark")
+		print(new_mark)
 		stud_data 	= StudentMarks.objects.filter(id=id)
 
 		if stud_data:
 			data 	= StudentMarks.objects.get(id=id)
 			data.mark = new_mark
 			data.save()
+			return redirect('/area_admin/admin_home')
 
 		else:
 			print("error")

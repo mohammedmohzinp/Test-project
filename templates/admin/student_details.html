@@ -88,10 +88,15 @@
                     <th scope="row">{{forloop.counter}}</th>
                     <td>{{details.subjectCode.Subject}}</td>
                       <td>{{details.mark}}</td>
-                    <td>{{details.examdate}}</td>
-                  <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Edit
-</button></td>
+                    <td>{{details.examdate}}
+
+                    </td>
+                  <td>
+
+ 
+
+<a class="dropdown-item-menu btn btn-primary" href="#" data-erp="{{ details.mark }}" data-toggle="modal"  data-target="#exampleModalLong" data-id="{{ details.id }}"><i class="fa fa-edit " style="color:blue"> </i></a>
+</td>
                     
                    
 
@@ -110,6 +115,33 @@
 
       <!-- Button trigger modal -->
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form action="{% url 'editmark' %}" method="post">
+        <!-- <h2 name="hiddenValue" id="hiddenValue" />asds -->
+        {% csrf_token %}
+        <!-- <input type="text" name="bookId" id="bookId" value=""/> -->
+        <input type="hidden" name="markid" id="category_id">
+        <input type="text" name="mark" value="" class="form-control" id="category_data"><br>
+        <input type="submit" name="" value="submit" class="form-control">
+      </form>
+      </div>
+  <!--     <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -123,14 +155,14 @@
       </div>
       <div class="modal-body">
 
-        <form >
-          <input type="number" name="mark" class="form-control" style="width: 100%" placeholder="Enter the Mark">
+        <form action="{% url 'editmark' %}" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="markid" id=markid>
+          <input type="number" name="mark" class="form-control" style="width: 100%" placeholder="Enter the Mark"><br>
+          <input type="submit" name="submit" value="submit" class="btn btn-primary">
         </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+    
     </div>
   </div>
 </div>
@@ -138,10 +170,50 @@
 
 <script type="text/javascript">
   $('#myModal').on('shown.bs.modal', function () {
+  var id=$(this).data('id');
+ 
+  console.log(id);
+$("#markid").val(id);
+
   $('#myInput').trigger('focus')
+
+
 })
 
 
+</script>
+
+
+
+        <script>
+$(document).on("click", ".dropdown-item-menu", function () {
+
+
+
+
+
+
+  
+  // alert("popp")
+var myBookId = $(this).data('erp');
+var id=$(this).data('id');
+  console.log(myBookId,"dsfa")
+// var BookId = 'http://127.0.0.1:8000/categoryies/' + myBookId;
+
+// $('.modal-body #category_data').attr('src', BookId);
+
+
+
+// $(".modal-body h2").text("popo");
+
+$("#category_data").val(myBookId);
+$("#category_id").val(id);
+
+// As pointed out in comments,
+// it is unnecessary to have to manually call the modal.
+  // $('#exampleModalLong').modal('show');
+   // alert("popp8")
+});
 </script>
 
 {% endblock %}
